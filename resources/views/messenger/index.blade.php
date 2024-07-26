@@ -1,4 +1,5 @@
 @extends('messenger.layouts.app')
+
 @section('contents')
 
 <section class="wsus__chat_app">
