@@ -6,7 +6,7 @@ aria-hidden="true">
             <form action="#">
 
                 <div class="file">
-                    <img src="{{ asset(auth()->user()->avatar) }}" alt="Upload" class="img-fluid"=>
+                    <img src="{{ asset(auth()->user()->avatar) }}" alt="Upload" class="img-fluid profile-image-preview">
                     <label for="select_file"><i class="fal fa-camera-alt"></i></label>
                     <input id="select_file" type="file" hidden>
                 </div>
