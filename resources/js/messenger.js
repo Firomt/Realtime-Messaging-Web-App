@@ -25,7 +25,7 @@ function imagePreview (input, selector){
  */
 
  $(document).ready(function(){
-    $('select_file').change(function(){
+    $('#select_file').change(function(){
            imagePreview(this, '.profile-image-preview');
 
     });
