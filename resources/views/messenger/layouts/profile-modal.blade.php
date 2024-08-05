@@ -42,6 +42,8 @@ aria-hidden="true">
     $(document).ready(function(){
         $('.profile-form').on('submit', function(e){
             e.preventDefault();
+
+
             let formData = $(this).serialize();
             $.ajax({
                 method: 'POST',
@@ -52,6 +54,11 @@ aria-hidden="true">
                 },
                 error: function(xhr, status, error){
                     console.log(xhr);
+                    let errors = xhr.responseJSON.errors;
+
+                    $.each(errors, function(index, value){
+                        notyf.error(value[0]);
+                    })
 
                 }
 
