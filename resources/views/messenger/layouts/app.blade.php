@@ -49,7 +49,7 @@
     <script src="{{ asset('assets/js/main.js')}}"></script>
     <script>
         var notyf = new Notyf({
-            duration: 5000    
+            duration: 5000
         });
     </script>
     @stack('scripts')
