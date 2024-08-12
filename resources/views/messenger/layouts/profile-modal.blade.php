@@ -23,7 +23,7 @@ aria-hidden="true">
                         <input type="password" placeholder="New Password" name="password">
                     </div>
                     <div class="col-xl-12">
-                        <input type="password" placeholder="Confirm Password" name="password_cofirmaiton">
+                        <input type="password" placeholder="Confirm Password" name="password_confirmation">
                     </div>
                 </div>
                 <div class="modal-footer p-0 mt-4 ">

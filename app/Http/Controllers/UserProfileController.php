@@ -18,6 +18,13 @@ class UserProfileController extends Controller
             'email' => ['required', 'email', 'max:100']
         ]);
 
+
+
+
+
+
+
+
         $avatarPath = $this->uploadFile($request, 'avatar');
 
         $user = Auth::user();
@@ -25,6 +32,16 @@ class UserProfileController extends Controller
         $user->name = $request->name;
         $user->user_name = $request->user_id;
         $user->email = $request->email;
+
+        if($request->filled('current_password')){
+            $request->validate([
+                'current_password'=>['required', 'current_password'],
+                'password' => ['required','string', 'min:8', 'confirmed']
+
+            ]);
+            $user->password = bcrypt($request->password);
+        }
+
         $user->save();
 
         notyf()->addSuccess("Updated Successfully.");
