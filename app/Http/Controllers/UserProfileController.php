@@ -14,7 +14,7 @@ class UserProfileController extends Controller
         $request->validate([
             'avatar'=> ['nullable', 'image', 'max:500'],
             'name'=> ['required', 'string', 'max:50'],
-            'user_id' => ['required', 'string', 'max:20'],
+            'user_id' => ['required', 'string', 'max:20', 'unique:users,user_name,'.auth()->user()->id],
             'email' => ['required', 'email', 'max:100']
         ]);
 
