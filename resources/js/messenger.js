@@ -19,8 +19,17 @@ function imagePreview (input, selector){
 
 let searchPage = 1;
 let noMoreDataSearch = false;
-
+let searchTempVal = "";
 function searchUsers(query){
+
+    if(query != searchTempVal){   /** code logic that enables showing search result for new search queries other than
+                                    for the first query note: search result was only working for the first query only */
+         searchPage = 1;
+         noMoreDataSearch = false;
+    }
+
+    searchTempVal = query;
+
 
     if(!noMoreDataSearch){
     $.ajax({
