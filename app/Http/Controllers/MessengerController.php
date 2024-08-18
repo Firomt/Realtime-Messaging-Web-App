@@ -22,13 +22,14 @@ class MessengerController extends Controller
         $records = User::where('id', '!=',Auth::user()->id)
                 ->where('name', 'LIKE', "%{$input}%")
                 ->orWhere('user_name', 'LIKE', "%{$input}%")
-                ->get();
+                ->paginate(10);
         foreach($records as $record){
             $getRecords .= view('messenger.components.search-item', compact('record'))->render();
         }
 
         return response()->json([
-            'records'=>$getRecords
+            'records' => $getRecords,
+            'last_page' => $records->lastPage()
 
         ]);
     }

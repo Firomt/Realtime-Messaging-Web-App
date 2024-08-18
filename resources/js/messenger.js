@@ -17,13 +17,27 @@ function imagePreview (input, selector){
          }
 }
 
+let searchPage = 1;
+let noMoreDataSearch = false;
+
 function searchUsers(query){
+
+    if(!noMoreDataSearch){
     $.ajax({
         method: 'GET',
         url: '/messenger/search',
-        data: {query: query},
+        data: {query: query,page:searchPage},
         success: function(data){
-            $('.user_search_list_result').html(data.records)
+            if(searchPage < 2){
+                $('.user_search_list_result').html(data.records)
+
+            }else{
+                $('.user_search_list_result').append(data.records)
+            }
+
+            noMoreDataSearch = searchPage >= data?.last_page
+
+            if(!noMoreDataSearch) searchPage +=1;
 
         },
 
@@ -31,6 +45,19 @@ function searchUsers(query){
 
         }
 
+    })
+}
+
+}
+function actionOnScroll(selector,   callback, topScroll = false){
+    $(selector).on('scroll', function(){
+        let element = $(this).get(0);
+        const condition = topScroll ? element.scrollTop == 0 :
+        element.scrollTop + element.clientHeight >= element.scrollHeight;
+
+        if(condition){
+            callback();
+        }
     })
 
 }
@@ -71,6 +98,14 @@ function debounce(callback, delay){
         if(query.length > 0){
             debouncedSearch();
         }
+
+    })
+
+    //search pagination
+    actionOnScroll(".user_search_list_result", function(){
+        let value = $('.user_search').val();
+        searchUsers(value);
+
 
     })
 
