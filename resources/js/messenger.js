@@ -100,6 +100,34 @@ function debounce(callback, delay){
     }
  }
 
+ /**
+ *
+ * -----------------------------
+ *  Fetch id data of user and update the view
+ * ------------------------------
+ */
+
+function IDinfo(id){
+    $.ajax({
+        method: 'GET',
+        url: '/messenger/id-info',
+        data: {id:id},
+        success: function(data){
+        
+         
+
+        },
+
+        error: function(xhr, status, error){
+
+        }
+    });
+
+}
+
+
+
+
 /**
  *
  * -----------------------------
@@ -140,7 +168,8 @@ function debounce(callback, delay){
     //click action
     $("body").on("click", ".messenger-list-item", function(){
          const dataId = $(this).attr("data-id");
-         alert(dataId);
+         
+         IDinfo(dataId);
     })
 
  });
