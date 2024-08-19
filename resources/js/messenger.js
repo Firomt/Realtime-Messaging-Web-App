@@ -137,4 +137,10 @@ function debounce(callback, delay){
 
     })
 
+    //click action
+    $("body").on("click", ".messenger-list-item", function(){
+         const dataId = $(this).attr("data-id");
+         alert(dataId);
+    })
+
  });
