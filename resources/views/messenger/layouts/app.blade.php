@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/venobox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+
 
     <link rel="stylesheet" href="{{ asset('assets/css/spacing.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -44,6 +46,7 @@
     <script src="{{ asset('assets/js/venobox.min.js')}}"></script>
     <script src="{{ asset('assets/js/emojionearea.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
 
     <!--main/custom js-->
     <script src="{{ asset('assets/js/main.js')}}"></script>

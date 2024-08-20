@@ -112,12 +112,17 @@ function IDinfo(id){
         method: 'GET',
         url: '/messenger/id-info',
         data: {id:id},
+        beforeSend: function(){
+            NProgress.start();
+
+        },
         success: function(data){
            $(".messenger-header").find("img").attr("src", data.fetch.avatar)
            $(".messenger-header").find("h4").text(data.fetch.name);
            $(".messenger-info-view .user_photo").find("img").attr("src",data.fetch.avatar);
            $(".messenger-info-view").find(".user_name").text(data.fetch.name);
            $(".messenger-info-view").find(".user_unique_name").text(data.fetch.user_name);
+           NProgress.done();
 
 
         },
