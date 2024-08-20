@@ -45,7 +45,7 @@ function searchUsers(query){
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            
+
             `
             $('.user_search_list_result').append(loader);
 
@@ -113,8 +113,12 @@ function IDinfo(id){
         url: '/messenger/id-info',
         data: {id:id},
         success: function(data){
-        
-         
+           $(".messenger-header").find("img").attr("src", data.fetch.avatar)
+           $(".messenger-header").find("h4").text(data.fetch.name);
+           $(".messenger-info-view .user_photo").find("img").attr("src",data.fetch.avatar);
+           $(".messenger-info-view").find(".user_name").text(data.fetch.name);
+           $(".messenger-info-view").find(".user_unique_name").text(data.fetch.user_name);
+
 
         },
 
@@ -168,7 +172,7 @@ function IDinfo(id){
     //click action
     $("body").on("click", ".messenger-list-item", function(){
          const dataId = $(this).attr("data-id");
-         
+
          IDinfo(dataId);
     })
 
