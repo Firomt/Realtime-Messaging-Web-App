@@ -7,6 +7,9 @@
 
 var temporaryMsgId = 0;
 
+const messageForm = $(".message-form"),
+      messageInput = $(".message-input");
+
 const getMessengerId = () => $("meta[name=id]").attr("content");
 const setMessengerId = (id) => $("meta[name=id]").attr("content", id);
 
@@ -163,6 +166,18 @@ function IDinfo(id){
 
 }
 
+ /**
+ *
+ * -----------------------------
+ *  Send Message
+ * ------------------------------
+ */
+
+function sendMessage() {
+     temporaryMsgId += 1;
+     let tempId = `temp${temporaryMsgId}`;
+     const inputValue = messageInput.val();
+}
 
 
 
@@ -208,6 +223,13 @@ function IDinfo(id){
          const dataId = $(this).attr("data-id");
          setMessengerId(dataId);
          IDinfo(dataId);
+    })
+
+    //send message
+    $(".message-form").on("submit", function(e) {
+        e.preventDefault();
+        sendMessage();
+
     })
 
  });
