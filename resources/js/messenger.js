@@ -8,14 +8,15 @@
 var temporaryMsgId = 0;
 
 const messageForm = $(".message-form"),
-      messageInput = $(".message-input");
+      messageInput = $(".message-input"),
+      csrf_token = $("meta[name=csrf_token]").attr("content");
 
 const getMessengerId = () => $("meta[name=id]").attr("content");
 const setMessengerId = (id) => $("meta[name=id]").attr("content", id);
 
 
 
-/**
+/**a
  *
  * -----------------------------
  *  Reusable Functions
@@ -175,8 +176,30 @@ function IDinfo(id){
 
 function sendMessage() {
      temporaryMsgId += 1;
-     let tempId = `temp${temporaryMsgId}`;
+     let tempID = `temp_${temporaryMsgId}`;
      const inputValue = messageInput.val();
+
+     if (inputValue.length > 0 ) {
+        const formData = new FormData($(".message-form")[0]);
+        formData.append("id", getMessengerId());
+        formData.append("temporaryMsgId", tempID);
+        formData.append("_token", csrf_token);
+
+        $.ajax({
+            method: "POST",
+            url: "/messenger/send-message",
+            data: formData,
+            dataType:"JSON",
+            processData: false,
+            contentType: false,
+            success: function(data){
+
+            },
+            error: function(xhr, status, error){
+
+            }
+        })
+     }
 }
 
 
