@@ -9,6 +9,7 @@ var temporaryMsgId = 0;
 
 const messageForm = $(".message-form"),
       messageInput = $(".message-input"),
+      messageBoxContainer = $(".wsus__chat_area_body"),
       csrf_token = $("meta[name=csrf_token]").attr("content");
 
 const getMessengerId = () => $("meta[name=id]").attr("content");
@@ -192,6 +193,10 @@ function sendMessage() {
             dataType:"JSON",
             processData: false,
             contentType: false,
+            beforeSend: function(){
+                // add temp message on dom
+                messageBoxContainer.append(sendTempMessageCard(inputValue, tempID))
+            },
             success: function(data){
 
             },
@@ -200,6 +205,21 @@ function sendMessage() {
             }
         })
      }
+}
+
+function sendTempMessageCard(message, tempId) {
+    return `
+        <div class="wsus__single_chat_area" data-id="${tempId}">
+                <div class="wsus__single_chat chat_right">
+                    <p class="messages">${message}</p>
+                    <a class="venobox" data-gall="gallery01" href="images/chat_img.png">
+                        <img src="images/chat_img.png" alt="gallery1" class="img-fluid w-100">
+                    </a>
+                    <span class="far fa-clock time"> now</span>
+                    <a class="action" href="#"><i class="fas fa-trash"></i></a>
+                </div>
+            </div>
+    `
 }
 
 
