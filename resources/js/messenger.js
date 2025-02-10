@@ -196,6 +196,8 @@ function sendMessage() {
             beforeSend: function(){
                 // add temp message on dom
                 messageBoxContainer.append(sendTempMessageCard(inputValue, tempID))
+                messageForm.trigger("reset");
+                $(".emojionearea-editor").text("");
             },
             success: function(data){
 
