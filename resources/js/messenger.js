@@ -215,7 +215,7 @@ function sendTempMessageCard(message, tempId) {
                     <a class="venobox" data-gall="gallery01" href="images/chat_img.png">
                         <img src="images/chat_img.png" alt="gallery1" class="img-fluid w-100">
                     </a>
-                    <span class="far fa-clock time"> now</span>
+                    <span class="clock"><i class="fas fa-clock"></i> now</span>
                     <a class="action" href="#"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
