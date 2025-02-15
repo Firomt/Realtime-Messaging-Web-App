@@ -200,7 +200,10 @@ function sendMessage() {
                 $(".emojionearea-editor").text("");
             },
             success: function(data){
+                const tempMsgCardElement = messageBoxContainer.find(`.message-card[data-id=${data.tempID}]`);
 
+                tempMsgCardElement.before(data.message);
+                tempMsgCardElement.remove();
             },
             error: function(xhr, status, error){
 
@@ -211,7 +214,7 @@ function sendMessage() {
 
 function sendTempMessageCard(message, tempId) {
     return `
-        <div class="wsus__single_chat_area" data-id="${tempId}">
+        <div class="wsus__single_chat_area message-card" data-id="${tempId}">
                 <div class="wsus__single_chat chat_right">
                     <p class="messages">${message}</p>
                     <a class="venobox" data-gall="gallery01" href="images/chat_img.png">
