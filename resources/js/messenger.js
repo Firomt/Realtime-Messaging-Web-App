@@ -280,4 +280,10 @@ function sendTempMessageCard(message, tempId) {
 
     })
 
+    $('.attachment-input').change(function(){
+        imagePreview(this, '.attachment-preview');
+        $('.attachment-block').removeClass('d-none');
+
+    });
+
  });
