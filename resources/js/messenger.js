@@ -227,6 +227,14 @@ function sendTempMessageCard(message, tempId) {
     `
 }
 
+function messageFormReset(){
+    $('.attachment-block').addClass('d-none');
+    $('.emojionearea-editor').text("");
+    messageForm.trigger("reset");
+}
+
+
+
 
 
 /**
@@ -285,5 +293,9 @@ function sendTempMessageCard(message, tempId) {
         $('.attachment-block').removeClass('d-none');
 
     });
+
+    $(".cancel-attachment").on('click', function(){
+        messageFormReset();
+    })
 
  });

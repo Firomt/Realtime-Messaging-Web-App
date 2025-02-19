@@ -86,7 +86,7 @@
             <div class="footer_message">
                 <div class="img d-none attachment-block">
                     <img src="{{ asset('assets/images/chat_img.png') }}" alt="User" class="img-fluid attachment-preview">
-                    <span><i class="far fa-times"></i></span>
+                    <span class="cancel-attachment"><i class="far fa-times"></i></span>
                 </div>
                 <form action="#" class="message-form">
                     <div class="file">
