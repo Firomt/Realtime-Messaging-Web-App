@@ -60,21 +60,6 @@
             </div>
 
 
-            {{-- <div class="wsus__single_chat_area">
-                <div class="wsus__single_chat chat_right">
-                    <div class="pre_loader">
-                        <div class="spinner-border text-light" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                    <a class="venobox" data-gall="gallery01" href="images/chat_img.png">
-                        <img src=" {{ asset('assets/images/chat_img.png') }}" alt="gallery1" class="img-fluid w-100">
-                    </a>
-                    <span class="time"> 5h ago</span>
-                    <a class="action" href="#"><i class="fas fa-trash"></i></a>
-                </div>
-            </div> --}}
-
 
         </div>
 

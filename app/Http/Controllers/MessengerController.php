@@ -57,7 +57,6 @@ class MessengerController extends Controller
         $request->validate([
             'message' => ['required'],
             'id' => ['required', 'integer'],
-            'temporaryMsgId' => ['required'],
             'attachment' => ['nullable', 'max:1024', 'image']
         ]);
 
@@ -70,10 +69,15 @@ class MessengerController extends Controller
         if($attachmentPath) $message->attachment = json_encode($attachmentPath);
         $message->save();
 
+        return response()->json([
+            'message' => $message->attachment ? $this->messageCard($message, true) : $this->messageCard($message),
+            'tempID' => $request->temporaryMsgId
+        ]);
+
 
     }
 
-   function messageCard($message){
-        return view('messenger.components.message-card', compact('message'))->render();
+   function messageCard($message, $attachment = false){
+        return view('messenger.components.message-card', compact('message', 'attachment'))->render();
    }
 }
