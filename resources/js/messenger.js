@@ -202,8 +202,7 @@ function sendMessage() {
                 } else {
                     messageBoxContainer.append(sendTempMessageCard(inputValue, tempID))
                 }
-                messageForm.trigger("reset");
-                $(".emojionearea-editor").text("");
+               messageFormReset();
             },
             success: function(data){
                 const tempMsgCardElement = messageBoxContainer.find(`.message-card[data-id=${data.tempID}]`);
