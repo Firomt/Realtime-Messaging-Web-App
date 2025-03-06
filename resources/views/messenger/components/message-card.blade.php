@@ -8,7 +8,10 @@
             <a class="venobox" data-gall="gallery01" href="{{ asset ($imagePath) }}">
                 <img src=" {{ asset ($imagePath) }}"  alt="" class="img-fluid w-100">
             </a>
+            @if ($message->body)
             <p class="messages">{{ $message->body }}</p>
+            @endif
+
             <span class="time">{{ timeAgo($message->created_at)}} </span>
             <a class="action" href="#"><i class="fas fa-trash"></i></a>
         </div>

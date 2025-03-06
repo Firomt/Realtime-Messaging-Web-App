@@ -66,7 +66,7 @@
         <div class="wsus__chat_area_footer">
             <div class="footer_message">
                 <div class="img d-none attachment-block">
-                    <img src="{{ asset('assets/images/chat_img.png') }}" alt="User" class="img-fluid attachment-preview">
+                    <img src="" alt="User" class="img-fluid attachment-preview">
                     <span class="cancel-attachment"><i class="far fa-times"></i></span>
                 </div>
                 <form action="#" class="message-form" enctype="multipart/form-data">

@@ -315,6 +315,7 @@ function messageFormReset(){
 
     })
 
+    // send attachment 
     $('.attachment-input').change(function(){
         imagePreview(this, '.attachment-preview');
         $('.attachment-block').removeClass('d-none');

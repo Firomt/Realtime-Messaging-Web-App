@@ -55,7 +55,7 @@ class MessengerController extends Controller
 
     function sendMessage(Request $request){
         $request->validate([
-            'message' => ['required'],
+            //'message' => ['required'],
             'id' => ['required', 'integer'],
             'attachment' => ['nullable', 'max:1024', 'image']
         ]);
