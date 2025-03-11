@@ -8,7 +8,7 @@
         <div class="wsus__chat_area">
 
             <div class="wsus__message_paceholder d-none"></div>
-            <div class="wsus__message_paceholder blank  d-flex justify-content-center align-items-center">
+            <div class="wsus__message_paceholder_blank  d-flex justify-content-center align-items-center">
                <span class="select_a_user">Select a user to start a conversation</span>
             </div>
 
