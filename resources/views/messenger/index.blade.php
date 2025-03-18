@@ -19,7 +19,7 @@
                         <i class="fas fa-arrow-left"></i>
                     </span>
                     <img src="images/author_img_2.jpg" alt="User" class="img-fluid">
-                    <h4>Jubaydul islam</h4>
+                    <h4>Firo Mt</h4>
                 </div>
                 <div class="header_right">
                     <a href="#" class="favourite"><i class="fas fa-star"></i></a>

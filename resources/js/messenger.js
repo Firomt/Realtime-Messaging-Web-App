@@ -153,7 +153,10 @@ function IDinfo(id){
 
         },
         success: function(data){
-           $(".messenger-header").find("img").attr("src", data.fetch.avatar)
+
+           //fetch messages
+           fetchMessages(data.fetch.id);
+           $(".messenger-header").find("img").attr("src", data.fetch.avatar);
            $(".messenger-header").find("h4").text(data.fetch.name);
            $(".messenger-info-view .user_photo").find("img").attr("src",data.fetch.avatar);
            $(".messenger-info-view").find(".user_name").text(data.fetch.name);
@@ -264,7 +267,32 @@ function messageFormReset(){
     messageForm.trigger("reset");
 }
 
+/**
+ *
+ * -----------------------------
+ *  Fetch messages from database
+ * ------------------------------
+ */
+let messagesPage = 1;
+let noMoreMessages = false;
+let messagesLoading = false;
+function fetchMessages(id){
+    $.ajax({
+        method: "GET",
+        url: "/messenger/fetch-messages",
+        data: {
+            _token: csrf_token,
+            id: id,
+            page: messagesPage
+        },
+        success: function() {
 
+        },
+        error: function(xhr, status, error) {
+
+        }
+    })
+}
 
 
 
