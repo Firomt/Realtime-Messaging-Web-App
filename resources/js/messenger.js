@@ -285,8 +285,8 @@ function fetchMessages(id){
             id: id,
             page: messagesPage
         },
-        success: function() {
-
+        success: function(data) {
+            messageBoxContainer.html(data.messages)
         },
         error: function(xhr, status, error) {
 

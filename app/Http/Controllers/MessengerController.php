@@ -95,8 +95,8 @@ class MessengerController extends Controller
         //validation
 
         $allMessages = '';
-        foreach($messages as $message) {
-            $allMessages .= $this->messageCard($message);
+        foreach($messages->reverse() as $message) {
+            $allMessages .= $this->messageCard($message, $message->attachment ? true : false);
    }
 
    $response['messages'] = $allMessages;
