@@ -209,6 +209,7 @@ function sendMessage() {
                 } else {
                     messageBoxContainer.append(sendTempMessageCard(inputValue, tempID))
                 }
+                scrollToBottom(messageBoxContainer);
                messageFormReset();
             },
             success: function(data){
@@ -286,13 +287,29 @@ function fetchMessages(id){
             page: messagesPage
         },
         success: function(data) {
-            messageBoxContainer.html(data.messages)
+            messageBoxContainer.html(data.messages);
+            scrollToBottom(messageBoxContainer);
+
         },
         error: function(xhr, status, error) {
 
         }
     })
 }
+
+
+/**
+ *
+ * -----------------------------
+ *  Slide to bottom on action
+ * ------------------------------
+ */
+function scrollToBottom(container){
+    $(container).stop().animate({
+        scrollTop: $(container)[0].scrollHeight
+    });
+}
+
 
 
 
