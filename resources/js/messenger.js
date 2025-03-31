@@ -155,7 +155,7 @@ function IDinfo(id){
         success: function(data){
 
            //fetch messages
-           fetchMessages(data.fetch.id);
+           fetchMessages(data.fetch.id, true);
            $(".messenger-header").find("img").attr("src", data.fetch.avatar);
            $(".messenger-header").find("h4").text(data.fetch.name);
            $(".messenger-info-view .user_photo").find("img").attr("src",data.fetch.avatar);
@@ -277,7 +277,11 @@ function messageFormReset(){
 let messagesPage = 1;
 let noMoreMessages = false;
 let messagesLoading = false;
-function fetchMessages(id){
+function fetchMessages(id, newFetch = false){
+    if(newFetch){
+        messagesPage = 1;
+        noMoreMessages = false;
+    }
     if(!noMoreMessages){
     $.ajax({
         method: "GET",
