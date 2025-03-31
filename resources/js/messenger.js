@@ -278,6 +278,7 @@ let messagesPage = 1;
 let noMoreMessages = false;
 let messagesLoading = false;
 function fetchMessages(id){
+    if(!noMoreMessages){
     $.ajax({
         method: "GET",
         url: "/messenger/fetch-messages",
@@ -287,14 +288,24 @@ function fetchMessages(id){
             page: messagesPage
         },
         success: function(data) {
-            messageBoxContainer.html(data.messages);
-            scrollToBottom(messageBoxContainer);
+            if(messagesPage == 1){
+                messageBoxContainer.html(data.messages);
+                scrollToBottom(messageBoxContainer);
+            }
+            else{
+                messageBoxContainer.prepend(data.messages);
+            }
+            //pagination lock and page increment
+            noMoreMessages = messagesPage >= data?.last_page;
+            if(!noMoreMessages) messagesPage += 1;
 
         },
         error: function(xhr, status, error) {
 
         }
     })
+
+}
 }
 
 
@@ -373,6 +384,11 @@ function scrollToBottom(container){
 
     $(".cancel-attachment").on('click', function(){
         messageFormReset();
-    })
+    });
+
+    // message pagination
+    actionOnScroll(".wsus__chat_area_body", function(){
+        fetchMessages(getMessengerId());
+    }, true)
 
  });
