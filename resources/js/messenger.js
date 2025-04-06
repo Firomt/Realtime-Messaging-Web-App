@@ -297,8 +297,13 @@ function fetchMessages(id, newFetch = false){
                 scrollToBottom(messageBoxContainer);
             }
             else{
+                const lastMsg = $(messageBoxContainer).find(".message-card").first();
+                const curOffset = lastMsg.offset().top - messageBoxContainer.scrollTop();
                 messageBoxContainer.prepend(data.messages);
+                messageBoxContainer.scrollTop(lastMsg.offset().top- curOffset);
             }
+
+
             //pagination lock and page increment
             noMoreMessages = messagesPage >= data?.last_page;
             if(!noMoreMessages) messagesPage += 1;
