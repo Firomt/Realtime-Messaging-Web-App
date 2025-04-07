@@ -94,7 +94,10 @@ class MessengerController extends Controller
             'messages' => ''
         ];
 
-        //validation
+        if(count($messages) < 1){
+            $response['messages'] = "<div class='d-flex justify-content-center align-items-center h-100'><p>Say 'Hi' to start chatting</p> </div>";
+            return response()->json($response);
+        }
 
         $allMessages = '';
         foreach ($messages->reverse() as $message) {
