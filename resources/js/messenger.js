@@ -291,7 +291,21 @@ function fetchMessages(id, newFetch = false){
             id: id,
             page: messagesPage
         },
+        beforeSend: function(){
+            let loader = `
+             <div class="text-center messages-loader">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            `;
+            messageBoxContainer.prepend(loader);
+        },
         success: function(data) {
+
+            messageBoxContainer.find(".messages-loader").remove();   //remove loader
+
+
             if(messagesPage == 1){
                 messageBoxContainer.html(data.messages);
                 scrollToBottom(messageBoxContainer);
@@ -310,7 +324,7 @@ function fetchMessages(id, newFetch = false){
 
         },
         error: function(xhr, status, error) {
-
+            console.log(error);
         }
     })
 
