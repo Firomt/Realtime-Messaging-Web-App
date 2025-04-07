@@ -282,7 +282,7 @@ function fetchMessages(id, newFetch = false){
         messagesPage = 1;
         noMoreMessages = false;
     }
-    if(!noMoreMessages){
+    if(!noMoreMessages && !messagesLoading){
     $.ajax({
         method: "GET",
         url: "/messenger/fetch-messages",
@@ -292,6 +292,7 @@ function fetchMessages(id, newFetch = false){
             page: messagesPage
         },
         beforeSend: function(){
+            messagesLoading = false;
             let loader = `
              <div class="text-center messages-loader">
                 <div class="spinner-border text-primary" role="status">
@@ -302,7 +303,7 @@ function fetchMessages(id, newFetch = false){
             messageBoxContainer.prepend(loader);
         },
         success: function(data) {
-
+            messagesLoading = true;
             messageBoxContainer.find(".messages-loader").remove();   //remove loader
 
 
