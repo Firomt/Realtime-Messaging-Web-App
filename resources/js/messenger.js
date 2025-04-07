@@ -162,7 +162,7 @@ function IDinfo(id){
            $(".messenger-info-view").find(".user_name").text(data.fetch.name);
            $(".messenger-info-view").find(".user_unique_name").text(data.fetch.user_name);
            NProgress.done();
-           disableChatBoxLoader();
+
 
 
         },
@@ -321,6 +321,8 @@ function fetchMessages(id, newFetch = false){
             //pagination lock and page increment
             noMoreMessages = messagesPage >= data?.last_page;
             if(!noMoreMessages) messagesPage += 1;
+
+            disableChatBoxLoader();
 
         },
         error: function(xhr, status, error) {
