@@ -292,7 +292,7 @@ function fetchMessages(id, newFetch = false){
             page: messagesPage
         },
         beforeSend: function(){
-            messagesLoading = false;
+            messagesLoading = true;
             let loader = `
              <div class="text-center messages-loader">
                 <div class="spinner-border text-primary" role="status">
@@ -303,7 +303,7 @@ function fetchMessages(id, newFetch = false){
             messageBoxContainer.prepend(loader);
         },
         success: function(data) {
-            messagesLoading = true;
+            messagesLoading = false;
             messageBoxContainer.find(".messages-loader").remove();   //remove loader
 
 
@@ -338,6 +338,31 @@ function fetchMessages(id, newFetch = false){
 /**
  *
  * -----------------------------
+ *  Fetch contact list from database
+ * ------------------------------
+ */
+let contactsPage = 1;
+let noMoreContacts = false;
+let contactLoading = false;
+function getContacts() {
+    if (!contactLoading && !noMoreContacts){
+    $.ajax({
+        method: "GET",
+        url: "messenger/fetch-contacts",
+        data: {page: contactsPage},
+        success: function(data) {
+
+        },
+        error: function(xhr, status, error){
+
+        }
+    })
+}
+}
+
+/**
+ *
+ * -----------------------------
  *  Slide to bottom on action
  * ------------------------------
  */
@@ -357,6 +382,7 @@ function scrollToBottom(container){
  * ------------------------------
  */
 
+getContacts();
 
  $(document).ready(function(){
     $('#select_file').change(function(){

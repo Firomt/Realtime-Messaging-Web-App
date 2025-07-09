@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('messenger/send-message', [MessengerController::class, 'sendMessage'])->name('messenger.send-message');
     // Fetch Message
     Route::get('messenger/fetch-messages', [MessengerController::class, 'fetchMessages'])->name('messenger.fetch-messages');
+    // Fetch Contacts
+     Route::get('messenger/fetch-contacts', [MessengerController::class, 'fetchContacts'])->name('messenger.fetch-contacts');
 
 
 
