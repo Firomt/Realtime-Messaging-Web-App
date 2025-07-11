@@ -95,7 +95,7 @@ class MessengerController extends Controller
             'messages' => ''
         ];
 
-        if(count($messages) < 1){
+        if (count($messages) < 1) {
             $response['messages'] = "<div class='d-flex justify-content-center align-items-center h-100'><p>Say 'Hi' to start chatting</p> </div>";
             return response()->json($response);
         }
@@ -111,21 +111,44 @@ class MessengerController extends Controller
     }
 
     //fetch contacts from database
-    function fetchContacts(Request $request){
-        $users = Message::join('users', function($join){
+    function fetchContacts(Request $request)
+    {
+        $users = Message::join('users', function ($join) {
             $join->on('messages.from_id', '=', 'users.id')
-            ->orOn('messages.to_id', '=', 'users.id');
+                ->orOn('messages.to_id', '=', 'users.id');
         })
-        ->where(function($q) {
-            $q->where('messages.from_id', Auth::user()->id)
-            ->orWhere('messages.to_id', Auth::user()->id);
-        })
-        ->where('users.id', '!=', Auth::user()->id)
-        ->select('users.*', DB::raw('MAX(messages.created_at) max_created_at'))
-        ->orderBy('max_created_at', 'desc')
-        ->groupBy('users.id')
-        ->paginate(10);
+            ->where(function ($q) {
+                $q->where('messages.from_id', Auth::user()->id)
+                    ->orWhere('messages.to_id', Auth::user()->id);
+            })
+            ->where('users.id', '!=', Auth::user()->id)
+            ->select('users.*', DB::raw('MAX(messages.created_at) max_created_at'))
+            ->orderBy('max_created_at', 'desc')
+            ->groupBy('users.id')
+            ->paginate(10);
 
-        return $users; 
+        if(count($users) > 0) {
+            $contacts = '';
+            foreach($users as $user) {
+                $contacts .= $this->getContactItem($user);
+            }
+
+             return $contacts;
+        }
+
+
+    }
+
+    function getContactItem($user)
+    {
+        $lastMessage = Message::where('from_id', Auth::user()->id)->where('to_id', $user->id)
+            ->orWhere('from_id', $user->id)->where('to_id', Auth::user()->id)
+            ->latest()->first();
+
+        $unseenCounter = Message::where('from_id', $user->id)->where('to_id', Auth::user()->id)->where('seen', 0)
+            ->count();
+
+
+        return view('messenger.components.contact-list-item', compact('lastMessage', 'unseenCounter', 'user'))->render();
     }
 }
